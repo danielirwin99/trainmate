@@ -1,11 +1,17 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Error from "./pages/Error";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
