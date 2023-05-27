@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <>
       <Navbar />
-      <header className=" w-full h-[60vh] relative flex flex-col items-center justify-center ">
+      <header className=" w-full h-[60vh] relative flex flex-col items-center justify-center px-3 ">
         <figure className="absolute w-full h-[60vh] bg-gradient-to-bl from-gray-400 to-black">
           <img
             className="w-full h-full object-cover mix-blend-overlay "
@@ -13,17 +13,19 @@ const Landing = () => {
             alt=""
           />
         </figure>
-        <h1 className="font-bold text-white text-center text-4xl lg:text-6xl z-10 tracking-wider">
-          Start your fitness journey here.
-        </h1>
-        <h2 className=" text-white text-center z-10 mt-10 font-semibold text-xl lg:text-2xl">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat
-          voluptates modi repudiandae ab nobis reprehenderit et accusamus, eos
-          ducimus ut!
-        </h2>
-        <button className="btn z-10 mt-10 bg-slate-50 bg-opacity-10">
-          Browse Collection
-        </button>
+        <div className="z-10 flex flex-col items-center justify-center px-7">
+          <h1 className="font-bold text-white text-center text-4xl lg:text-6xl z-10 tracking-wider">
+            Start your fitness journey here.
+          </h1>
+          <h2 className=" text-white text-center z-10 mt-10 font-semibold text-xl lg:text-2xl">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat
+            voluptates modi repudiandae ab nobis reprehenderit et accusamus, eos
+            ducimus ut!
+          </h2>
+          <button className="btn z-10 mt-10 bg-slate-50 bg-opacity-10">
+            Browse Collection
+          </button>
+        </div>
       </header>
     </>
   );
