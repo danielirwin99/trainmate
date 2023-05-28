@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import CustomAPIError from "./custom-api.js";
+import CustomAPIError from "./CustomAPI.js";
 
 // Pulls the CustomAPIError's functionality across
 // This handles the errors that

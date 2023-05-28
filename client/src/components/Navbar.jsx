@@ -13,7 +13,9 @@ const Navbar = () => {
               alt="trainmate logo"
             />
           </figure>
-          <h2 className="font-bold text-2xl text-[#fee4c3] hidden lg:block ">TrainMate</h2>
+          <h2 className="font-bold text-2xl text-[#fee4c3] hidden lg:block ">
+            TrainMate
+          </h2>
         </Link>
         <div>
           {" "}
@@ -25,7 +27,7 @@ const Navbar = () => {
               <Link to="/contact-us">Contact Us</Link>
             </li>
             <li className="navLinks globalColour">
-              <Link to="/landing">Login / Register</Link>
+              <Link to="/register">Login / Register</Link>
             </li>
           </ul>
         </div>
