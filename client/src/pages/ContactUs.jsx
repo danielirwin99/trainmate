@@ -11,7 +11,7 @@ const ContactUs = () => {
   return (
     <div className="bg-gray-700  ">
       <Navbar />
-      <div className="flex flex-col items-center h-[calc(100vh-120px)] mt-10">
+      <div className="flex flex-col items-center pageHeight mt-10">
         <h1 className="text-4xl font-bold text-white">Contact Us</h1>
         <form
           className="flex flex-col w-[60%] xl:w-[45%]"

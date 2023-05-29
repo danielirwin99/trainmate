@@ -24,36 +24,46 @@ const Navbar = () => {
               alt="trainmate logo"
             />
           </figure>
-          <h2 className="font-bold text-2xl text-[#fee4c3] hidden lg:block ">
+          <h2 className="font-bold text-2xl text-[#fee4c3] hidden lg:block text-shadow-sm shadow-black ">
             TrainMate
           </h2>
-        </Link>
-        <div>
-          {" "}
-          <ul className="flex justify-center space-x-7 text-center">
+        </Link>{" "}
+        <ul className="flex justify-center space-x-7 text-center -mr-4">
+          <li className="navLinks">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="navLinks">
+            <Link to="/contact-us">Contact Us</Link>
+          </li>{" "}
+          {user && (
             <li className="navLinks">
-              <Link to="/">Home</Link>
+              <Link to="/profile">Profile</Link>
             </li>
-            <li className="navLinks">
-              <Link to="/contact-us">Contact Us</Link>
-            </li>
-            <li className="navLinks globalColour">
-              {" "}
-              {user ? (
-                <button
-                  type="button"
-                  className="underline"
-                  onClick={() => logout(user)}
-                >
-                  Logout
-                </button>
-              ) : (
-                <Link to="/register">Login / Register</Link>
-              )}
-            </li>
-          </ul>
-        </div>
-        <div>
+          )}
+          <li className="navLinks globalColour">
+            {" "}
+            {user ? (
+              <button
+                type="button"
+                className="underline"
+                onClick={() => logout(user)}
+              >
+                Logout
+              </button>
+            ) : (
+              <Link to="/register">Login / Register</Link>
+            )}
+          </li>
+        </ul>
+        <div className="flex items-center space-x-3">
+          {user && (
+            <h3 className="-ml-10 mr-2 capitalize text-white font-bold">
+              Welcome,{" "}
+              <Link to="/profile" className="hover:text-[#fee4c3]">
+                {user.name}
+              </Link>{" "}
+            </h3>
+          )}
           <Link to="/journal" className="btn">
             Journal
           </Link>

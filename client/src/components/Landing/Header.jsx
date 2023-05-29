@@ -17,9 +17,7 @@ const Header = () => {
           Start your fitness journey here.
         </h1>
         <h2 className=" text-white text-center z-10 mt-10 font-semibold text-xl lg:text-2xl">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat
-          voluptates modi repudiandae ab nobis reprehenderit et accusamus, eos
-          ducimus ut!
+        "Unleash your inner beast and conquer the iron jungle!"
         </h2>
         <button
           onClick={() => navigate("/journal")}

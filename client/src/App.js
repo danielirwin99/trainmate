@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Journal from "./pages/Journal";
 import ContactUs from "./pages/ContactUs";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
