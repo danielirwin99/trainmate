@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/appContext";
 
 const Navbar = () => {
+  const { user } = useAppContext();
+
   const navigate = useNavigate();
   return (
     <nav className=" bg-gray-500 opacity-95 sticky top-0 z-50">
@@ -29,7 +32,18 @@ const Navbar = () => {
               <Link to="/contact-us">Contact Us</Link>
             </li>
             <li className="navLinks globalColour">
-              <Link to="/register">Login / Register</Link>
+              {" "}
+              {user ? (
+                <Link
+                  className="underline"
+                  onClick={() => console.log("Logged Out")}
+                  to="/logout"
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link to="/register">Login / Register</Link>
+              )}
             </li>
           </ul>
         </div>

@@ -7,6 +7,8 @@ import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
   LOGIN_USER_BEGIN,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_SUCCESS,
 } from "./actions.js";
 import axios from "axios";
 
@@ -16,10 +18,10 @@ const initialState = {
   showAlert: false,
   alertType: false,
   user: null,
-  genderTypeOptions: ["male", "female", "other"],
-  gender: "male",
   weight: "80kg",
   height: "178cm",
+  gender: "male",
+  genderTypeOptions: ["male", "female", "other"],
 };
 
 const AppContext = React.createContext();
@@ -86,7 +88,23 @@ const AppProvider = ({ children }) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
       const { data } = await axios.post("/auth/login", currentUser);
-    } catch (error) {}
+      const { user, weight, height } = data;
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: {
+          user,
+          weight,
+          height,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: LOGIN_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    // Clear the alert after three seconds (see above)
+    clearAlert();
   };
 
   return (

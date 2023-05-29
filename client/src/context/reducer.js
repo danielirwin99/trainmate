@@ -6,6 +6,7 @@ import {
   CLEAR_ALERT,
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
 } from "./actions.js";
 
 import { initialState } from "./appContext.js";
@@ -75,7 +76,17 @@ const reducer = (state, action) => {
       height: action.payload.height,
       showAlert: true,
       alertType: "success",
-      alertText: "User Successfully Created",
+      alertText: "User Successfully Logged In",
+    };
+  }
+
+  if (action.type === LOGIN_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
     };
   }
 };

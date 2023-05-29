@@ -5,8 +5,19 @@ const Alert = () => {
   // These are our dynamic values that will change depending on our action
   const { alertType, alertText } = useAppContext();
 
+  const successAlert = () => {
+    if (alertType === "success") return;
+  };
   // Dynamically shows depending on our state
-  return <div className={`alert alert-${alertType}`}>{alertText}</div>;
+  return (
+    <>
+      {successAlert ? (
+        <div className="bg-green-900">{alertText}</div>
+      ) : (
+        <div className="bg-red-300">{alertText}</div>
+      )}
+    </>
+  );
 };
 
 export default Alert;
