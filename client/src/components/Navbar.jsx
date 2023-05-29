@@ -4,14 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 
 const Navbar = () => {
-  const { user } = useAppContext();
+  const { user, logoutUser } = useAppContext();
 
   const navigate = useNavigate();
+
+  const logout = () => {
+    logoutUser();
+    navigate("/register");
+  };
+
   return (
-    <nav className=" bg-gray-500 opacity-95 sticky top-0 z-50">
+    <nav className=" bg-gray-500 sticky top-0 z-50">
       <div className="flex justify-between items-center px-6 py-3 h-[100px]">
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
-          <figure className="h-[80px]">
+          <figure className="h-[70px]">
             <img
               className="w-full h-full bg-[#fee4c3] rounded-full p-2"
               src="https://www.pngall.com/wp-content/uploads/2017/05/TM-Symbol-PNG-Picture.png"
@@ -34,13 +40,13 @@ const Navbar = () => {
             <li className="navLinks globalColour">
               {" "}
               {user ? (
-                <Link
+                <button
+                  type="button"
                   className="underline"
-                  onClick={() => console.log("Logged Out")}
-                  to="/logout"
+                  onClick={() => logout(user)}
                 >
                   Logout
-                </Link>
+                </button>
               ) : (
                 <Link to="/register">Login / Register</Link>
               )}

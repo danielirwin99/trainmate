@@ -60,7 +60,7 @@ const login = async (req, res) => {
   user.password = undefined;
   res
     .status(StatusCodes.OK)
-    .send({ user, weight: user.weight, height: user.height });
+    .json({ user, weight: user.weight, height: user.height });
 };
 
 const update = (req, res) => {

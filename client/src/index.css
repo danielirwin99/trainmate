@@ -19,6 +19,6 @@
     @apply px-4 py-2 border-2 shadow-sm border-[#fee4c3] rounded-full font-bold active:bg-[#fee4c3] transition-all duration-100 ease-in-out text-[#fee4c3];
   }
   .star {
-    @apply text-yellow-400 text-xl
+    @apply text-yellow-400 text-xl;
   }
 }

@@ -9,12 +9,12 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
+  LOGOUT_USER,
 } from "./actions.js";
 import axios from "axios";
 
 const initialState = {
   isLoading: false,
-  showAlert: false,
   showAlert: false,
   alertType: false,
   user: null,
@@ -87,7 +87,8 @@ const AppProvider = ({ children }) => {
   const loginUser = async (currentUser) => {
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
-      const { data } = await axios.post("/auth/login", currentUser);
+      const { data } = await axios.post("/api/v1/auth/login", currentUser);
+      console.log(data);
       const { user, weight, height } = data;
       dispatch({
         type: LOGIN_USER_SUCCESS,
@@ -107,6 +108,11 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const logoutUser = async () => {
+    dispatch({ type: LOGOUT_USER });
+    await authFetch.get("/auth/logout");
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -115,6 +121,7 @@ const AppProvider = ({ children }) => {
         displayAlert,
         registerUser,
         loginUser,
+        logoutUser,
       }}
     >
       {children}
