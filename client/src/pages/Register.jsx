@@ -26,6 +26,31 @@ const Register = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // Looking for these values
+    const { name, email, password, isMember } = values;
+
+    // If these values are not present display the alert and return it (stop the functionality)
+    if (!email || !password || (!isMember && !name)) {
+      displayAlert();
+      return;
+    }
+
+    // Grabs these three values to use below
+    const currentUser = { name, email, password };
+
+    // If they are a member already --> Fire this function from useAppContext()
+    if (isMember) {
+      loginUser(currentUser);
+
+      // If they are a new user registering --> It will fire the function from appContext
+      // with the values from above
+    } else {
+      registerUser(currentUser);
+    }
+  };
+
   return (
     <div className="flex justify-center items-center h-[100vh] bg-gradient-to-b from-gray-300 to-white">
       <form

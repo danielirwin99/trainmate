@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className=" bg-gray-500">
-      <div className="flex justify-between items-center px-6 py-4">
+      <div className="flex justify-between items-center px-6 py-3 h-[120px]">
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
           <figure className="h-[80px]">
             <img
@@ -32,7 +34,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-          <button className="btn">Journal</button>
+          <Link to="/journal" className="btn">
+            Journal
+          </Link>
         </div>
       </div>
     </nav>
