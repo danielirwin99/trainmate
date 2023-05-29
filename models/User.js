@@ -6,14 +6,14 @@ import jwt from "jsonwebtoken";
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    require: [true, "Please provide name"],
+    required: [true, "Please provide name"],
     minLength: 3,
     maxlength: 20,
     trim: true,
   },
   email: {
     type: String,
-    require: [true, "Please provide email"],
+    required: [true, "Please provide email"],
     minLength: 5,
     trim: true,
     validate: {
@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    require: [true, "Please provide password"],
+    required: [true, "Please provide password"],
     select: false,
   },
   lastName: {
@@ -31,6 +31,18 @@ const UserSchema = new mongoose.Schema({
     maxlength: 20,
     trim: true,
     default: "Last Name",
+  },
+  height: {
+    type: String,
+    maxlength: 15,
+    trim: true,
+    default: "178cm",
+  },
+  weight: {
+    type: String,
+    maxlength: 10,
+    trim: true,
+    default: "80kg",
   },
 });
 
@@ -42,10 +54,15 @@ UserSchema.pre("save", async function () {
 
 // JWT function
 UserSchema.methods.createJWT = function () {
-  console.log(this._id)
+  console.log(this._id);
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
+};
+
+UserSchema.methods.comparePassword = async function (savedPassword) {
+  const isMatching = await bcrypt.compare(savedPassword, this.password);
+  return isMatching;
 };
 
 export default mongoose.model("User", UserSchema);

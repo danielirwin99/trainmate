@@ -34,7 +34,7 @@ const Footer = () => {
           <ul className="flex flex-col">
             <Link className="footerLinks">Reviews</Link>
             <Link className="footerLinks">Refer a friend</Link>
-            <Link className="footerLinks">News</Link>
+            <Link className="footerLinks">Profile</Link>
           </ul>
         </div>
       </div>

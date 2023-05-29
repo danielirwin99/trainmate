@@ -6,7 +6,6 @@ const FormRow = ({
   value,
   handleChange,
   type,
-  placeholder,
 }) => {
   return (
     <div className="flex flex-col capitalize tracking-wider">

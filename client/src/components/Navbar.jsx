@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <nav className=" bg-gray-500">
-      <div className="flex justify-between items-center px-6 py-3 h-[120px]">
+    <nav className=" bg-gray-500 opacity-95 sticky top-0 z-50">
+      <div className="flex justify-between items-center px-6 py-3 h-[100px]">
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
           <figure className="h-[80px]">
             <img

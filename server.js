@@ -3,6 +3,7 @@ const app = express();
 import dotenv from "dotenv";
 dotenv.config();
 import "express-async-errors";
+import morgan from "morgan";
 
 // Middleware
 import notFoundMiddleware from "./middleware/not-found.js";
@@ -16,6 +17,10 @@ import errorHandlerMiddleware from "./middleware/ErrorHandler.js";
 // Lets us pass through json data with this Express Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+if (process.env.NODE_ENV !== "productions") {
+  app.use(morgan("dev"));
+}
 
 // Our Base URL
 app.get("/api/v1", (req, res) => {

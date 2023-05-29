@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormRow from "../components/FormRow";
 import { useAppContext } from "../context/appContext";
+import { useNavigate } from "react-router-dom";
+import Alert from "../components/Alert";
 
 const initialState = {
   name: "",
@@ -10,6 +12,7 @@ const initialState = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState(initialState);
   const { user, isLoading, showAlert, displayAlert, registerUser, loginUser } =
     useAppContext();
@@ -51,15 +54,25 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      // If there is a successful user that registered --> Redirect to the dashboard after 3 seconds
+      if (user) {
+        navigate("/");
+      }
+    }, 3000);
+  }, [user, navigate]);
+
   return (
     <div className="flex justify-center items-center h-[100vh] bg-gradient-to-b from-gray-300 to-white">
       <form
         className="flex flex-col w-[600px] rounded-md bg-gray-700 text-center px-16 py-10 focus:border-none shadow-md shadow-black"
-        // onSubmit={onSubmit}
+        onSubmit={onSubmit}
       >
         <h1 className="font-bold text-4xl z-1 mb-2 underline text-[#fee4c3]">
           {values.isMember ? "Sign In" : "Create an Account"}
         </h1>
+        {showAlert && <Alert />}
         {/* Name */}
         {!values.isMember && (
           <FormRow
@@ -83,7 +96,7 @@ const Register = () => {
           value={values.password}
           handleChange={handleChange}
         />
-        <button type="submit" className="btn mt-8 mb-6">
+        <button type="submit" className="btn mt-8 mb-6" disabled={isLoading}>
           Submit
         </button>
         <button className="px-4 py-2 border-2 shadow-sm border-[#fee4c3] rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out text-black mb-5">
