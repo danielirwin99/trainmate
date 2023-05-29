@@ -2,9 +2,9 @@ import React from "react";
 
 const Title = () => {
   return (
-    <section className="h-[400px] flex flex-col px-10 ">
-      <div className="h-full flex items-center justify-center ">
-        <h1 className="text-3xl font-bold">
+    <section className="h-[500px] flex flex-col mx-40 ">
+      <div className="h-full flex items-center justify-center text-center ">
+        <h1 className="text-6xl font-bold">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni,
           libero?
         </h1>

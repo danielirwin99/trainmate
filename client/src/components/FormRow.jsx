@@ -1,6 +1,13 @@
 import React from "react";
 
-const FormRow = ({ name, labelText, value, handleChange, type }) => {
+const FormRow = ({
+  name,
+  labelText,
+  value,
+  handleChange,
+  type,
+  placeholder,
+}) => {
   return (
     <div className="flex flex-col capitalize tracking-wider">
       <label
@@ -9,7 +16,13 @@ const FormRow = ({ name, labelText, value, handleChange, type }) => {
       >
         {labelText || name}
       </label>
-      <input className="py-1 px-3 rounded-sm" type={type} value={value} name={name} onChange={handleChange} />
+      <input
+        className="outline-none py-2 px-3 rounded-sm"
+        type={type}
+        value={value}
+        name={name}
+        onChange={handleChange}
+      />
     </div>
   );
 };
