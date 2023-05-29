@@ -12,9 +12,9 @@ const Alert = () => {
   return (
     <>
       {successAlert ? (
-        <div className="bg-green-900">{alertText}</div>
+        <div className="bg-green-900 p-4">{alertText}</div>
       ) : (
-        <div className="bg-red-300">{alertText}</div>
+        <div className="bg-red-300 p-4">{alertText}</div>
       )}
     </>
   );
