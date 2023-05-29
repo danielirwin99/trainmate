@@ -6,8 +6,13 @@ import {
 
 import { initialState } from "./appContext.js";
 
-const reducer = (state,action) => {
-    
-}
+const reducer = (state, action) => {
+  if (action.type === REGISTER_USER_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
+};
 
 export default reducer;

@@ -18,6 +18,10 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const register = () => {
+    dispatch({ type: REGISTER_USER_BEGIN });
+  };
+
   return (
     <AppContext.Provider
       value={{
