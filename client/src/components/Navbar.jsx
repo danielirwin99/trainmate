@@ -57,9 +57,12 @@ const Navbar = () => {
         </ul>
         <div className="flex items-center space-x-3">
           {user && (
-            <h3 className="-ml-10 mr-2 capitalize text-white font-bold">
+            <h3 className="-ml-14 mr-2 capitalize text-white font-bold text-lg">
               Welcome,{" "}
-              <Link to="/profile" className="hover:text-[#fee4c3]">
+              <Link
+                to="/profile"
+                className="transition-all duration-200 ease-out hover:text-[#fee4c3]"
+              >
                 {user.name}
               </Link>{" "}
             </h3>
