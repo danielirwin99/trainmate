@@ -68,7 +68,7 @@ const Register = () => {
     <div className="flex justify-center items-center h-[100vh] bg-gradient-to-b from-gray-300 to-white relative ">
       <button
         onClick={() => navigate("/")}
-        className="flex items-center absolute top-10 left-10 px-6 py-2 border-2 shadow-sm border-[#fee4c3] rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out text-black mb-5"
+        className="flex items-center absolute top-10 left-10 px-6 py-2 border-2 shadow-sm shadow-gray-600 border-[#fee4c3] rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out text-black mb-5"
       >
         <AiOutlineArrowLeft className="mr-3 -ml-2" /> Back
       </button>
