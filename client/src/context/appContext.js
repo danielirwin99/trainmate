@@ -17,6 +17,7 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  CLEAR_VALUES,
 } from "./actions.js";
 import axios from "axios";
 
@@ -28,6 +29,10 @@ const initialState = {
   user: null,
   weight: "",
   height: "",
+  userName: "",
+  userWeight: "",
+  userHeight: "",
+  userLastName: "Last Name",
   gender: "male",
   genderTypeOptions: ["male", "female", "other"],
 };
@@ -168,6 +173,10 @@ const AppProvider = ({ children }) => {
       });
     }
     clearAlert();
+  };
+
+  const clearValues = () => {
+    dispatch({ type: CLEAR_VALUES });
   };
 
   useEffect(() => {

@@ -13,6 +13,7 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   LOGOUT_USER,
+  CLEAR_VALUES,
 } from "./actions.js";
 
 import { initialState } from "./appContext.js";
@@ -108,7 +109,7 @@ const reducer = (state, action) => {
   if (action.type === GET_CURRENT_USER_BEGIN) {
     return {
       ...state,
-      isLoading: true,
+      userLoading: true,
       showAlert: false,
     };
   }
@@ -118,8 +119,8 @@ const reducer = (state, action) => {
       ...state,
       userLoading: false,
       user: action.payload.user,
-      weight: action.payload.weight,
-      height: action.payload.height,
+      userWeight: action.payload.weight,
+      userHeight: action.payload.height,
     };
   }
 
@@ -132,8 +133,10 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       user: action.payload.user,
-      weight: action.payload.weight,
-      height: action.payload.height,
+      userName: action.payload.userName,
+      useLastName: action.payload.userLastName,
+      userWeight: action.payload.userWeight,
+      userHeight: action.payload.userHeight,
       showAlert: true,
       alertType: "success",
       alertText: "Update Profile Updated!",
@@ -148,6 +151,18 @@ const reducer = (state, action) => {
       alertType: "danger",
       alertText: action.payload.msg,
     };
+  }
+
+  if (action.type === CLEAR_VALUES) {
+    const initialState = {
+      isEditing: false,
+      weight: state.weight,
+      height: state.height,
+      email: state.email,
+      name: state.name,
+      lastName: state.lastName,
+    };
+    return { ...state, ...initialState };
   }
 
   // throw new Error(`No such action : ${action.type}`);

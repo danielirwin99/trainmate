@@ -26,9 +26,6 @@ const ProfileForm = ({
         onChange={handleChange}
         placeholder={placeholder}
       />
-      <button className="ml-4 text-2xl  focus:border-2 border-black rounded-lg">
-        <FiEdit2 className="p-[5px]" />
-      </button>
     </div>
   );
 };
