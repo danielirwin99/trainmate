@@ -13,6 +13,7 @@ import connectDB from "./db/connect.js";
 import authRouter from "./routes/authRoute.js";
 import journalRouter from "./routes/journalRoute.js";
 import errorHandlerMiddleware from "./middleware/ErrorHandler.js";
+import authenticateUser from "./middleware/auth.js";
 
 // Lets us pass through json data with this Express Middleware
 app.use(express.json());
@@ -29,13 +30,12 @@ app.get("/api/v1", (req, res) => {
 
 // Auth Router
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/exercises", journalRouter);
+app.use("/api/v1/exercises", authenticateUser, journalRouter);
 
 // Jobs Router
 
 // Middleware
 app.use(notFoundMiddleware);
-
 // This converts the errors into json readable error responses
 app.use(errorHandlerMiddleware);
 
@@ -52,4 +52,5 @@ const start = async () => {
     console.log(error);
   }
 };
+
 start();

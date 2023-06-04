@@ -63,9 +63,32 @@ const login = async (req, res) => {
     .json({ user, weight: user.weight, height: user.height });
 };
 
-const update = (req, res) => {
+const update = async (req, res) => {
+  const { email, name, lastName, weight, height } = req.body;
+
+  if (!email || !name || !lastName || !weight || !height) {
+    throw new BadRequestError("Please provide all values");
+  }
+
+  const user = await User.findOne({ _id: req.user.userId });
+
+  user.email = email;
+  user.name = name;
+  user.lastName = lastName;
+  user.weight = weight;
+  user.height = height;
+
+  await user.save();
+
+  const token = user.createJWT();
+
   attachCookies({ res, token });
-  res.status(StatusCodes.OK).send("Update User");
+  res.status(StatusCodes.OK).json({
+    user,
+    weight: user.weight,
+    lastName: user.lastName,
+    height: user.height,
+  });
 };
 
 // When the User logs out it removes the cookie token too

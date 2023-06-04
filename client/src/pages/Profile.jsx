@@ -4,6 +4,7 @@ import { useAppContext } from "../context/appContext";
 import { BsPerson } from "react-icons/bs";
 import ProfileForm from "../components/ProfileForm";
 import { useNavigate } from "react-router-dom";
+import DeleteModal from "../components/DeleteModal";
 
 const Profile = () => {
   const { user, logoutUser } = useAppContext();
@@ -35,7 +36,7 @@ const Profile = () => {
           </figure>
           <div>
             <h1 className="capitalize text-5xl font-semibold mb-4">
-              {user.name}
+              {user?.name}
             </h1>
             <h2 className="text-cyan-600 cursor-pointer text-xl">
               {user?.email}
@@ -51,10 +52,11 @@ const Profile = () => {
           <ProfileForm type="password" name="password" placeholder="********" />
           <ProfileForm type="text" name="weight" placeholder={user?.weight} />
         </div>
-        <div className="flex items-center mx-80 ">
+        <div className="flex items-center mx-72 ">
           <button onClick={logout} className="btn px-7 bg-slate-500">
             Logout
           </button>
+          <DeleteModal />
         </div>
       </div>
     </>
