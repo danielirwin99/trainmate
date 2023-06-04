@@ -12,6 +12,7 @@ import {
   UPDATE_USER_BEGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  LOGOUT_USER,
 } from "./actions.js";
 
 import { initialState } from "./appContext.js";
@@ -95,6 +96,15 @@ const reducer = (state, action) => {
     };
   }
 
+  // If we click the logout button
+  if (action.type === LOGOUT_USER) {
+    return {
+      // The default values from appContext.js INSTEAD of ...state
+      ...initialState,
+      userLoading: false,
+    };
+  }
+
   if (action.type === GET_CURRENT_USER_BEGIN) {
     return {
       ...state,
@@ -108,8 +118,8 @@ const reducer = (state, action) => {
       ...state,
       userLoading: false,
       user: action.payload.user,
-      userWeight: action.payload.weight,
-      userHeight: action.payload.height,
+      weight: action.payload.weight,
+      height: action.payload.height,
     };
   }
 
@@ -122,8 +132,8 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       user: action.payload.user,
-      userWeight: action.payload.weight,
-      userHeight: action.payload.height,
+      weight: action.payload.weight,
+      height: action.payload.height,
       showAlert: true,
       alertType: "success",
       alertText: "Update Profile Updated!",

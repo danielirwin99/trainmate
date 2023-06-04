@@ -21,12 +21,13 @@ import {
 import axios from "axios";
 
 const initialState = {
+  userLoading: true,
   isLoading: false,
   showAlert: false,
   alertType: false,
   user: null,
-  weight: "80kg",
-  height: "178cm",
+  weight: "",
+  height: "",
   gender: "male",
   genderTypeOptions: ["male", "female", "other"],
 };
