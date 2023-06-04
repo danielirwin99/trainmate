@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "./reducer.js";
 import {
   REGISTER_USER_BEGIN,
@@ -10,6 +10,10 @@ import {
   LOGIN_USER_ERROR,
   LOGIN_USER_SUCCESS,
   LOGOUT_USER,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS,
+  DELETE_USER_BEGIN,
+  DELETE_USER_ERROR,
 } from "./actions.js";
 import axios from "axios";
 
@@ -113,6 +117,41 @@ const AppProvider = ({ children }) => {
     await authFetch.get("/auth/logout");
   };
 
+  const getCurrentUser = async () => {
+    dispatch({ type: GET_CURRENT_USER_BEGIN });
+    try {
+      const { data } = await authFetch.get("/auth/getCurrentUser");
+
+      const { user, weight, height } = data;
+      dispatch({
+        type: GET_CURRENT_USER_SUCCESS,
+        payload: { user, weight, height },
+      });
+    } catch (error) {
+      if (error.response.status === 401) return;
+      logoutUser();
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    dispatch({ type: DELETE_USER_BEGIN });
+    try {
+      await authFetch.delete(`auth/${userId}`);
+      logoutUser();
+    } catch (error) {
+      if (error.response.status === 401) return;
+      dispatch({
+        type: DELETE_USER_ERROR,
+        payload: { msg: error.response.data.msg },
+      });
+    }
+    clearAlert();
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -122,6 +161,8 @@ const AppProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        getCurrentUser,
+        deleteUser,
       }}
     >
       {children}

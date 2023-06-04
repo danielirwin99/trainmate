@@ -16,12 +16,12 @@ const Header = () => {
         <h1 className="font-bold text-white text-center text-4xl lg:text-6xl z-10 tracking-wider">
           Start your fitness journey here.
         </h1>
-        <h2 className=" text-white text-center z-10 mt-10 font-semibold text-xl lg:text-2xl">
+        <h2 className="drop-shadow-2xl shadow-black text-white text-center z-10 mt-10 font-semibold text-xl lg:text-2xl">
         "Unleash your inner beast and conquer the iron jungle!"
         </h2>
         <button
           onClick={() => navigate("/journal")}
-          className="btn z-10 mt-10 bg-slate-50 bg-opacity-10"
+          className="shadow-md shadow-black btn z-10 mt-10 bg-slate-50 bg-opacity-10"
         >
           Start Your Journal
         </button>

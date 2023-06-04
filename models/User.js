@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Please provide password"],
+    minlength: 6,
     select: false,
   },
   lastName: {
@@ -48,6 +49,8 @@ const UserSchema = new mongoose.Schema({
 
 // Hashing password function
 UserSchema.pre("save", async function () {
+  // If we are not modifying the password --> Return the whole thing successfully
+  if (!this.isModified("password")) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });

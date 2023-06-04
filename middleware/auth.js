@@ -2,6 +2,7 @@ import { UnAuthenticatedError } from "../errors/index.js";
 import jwt from "jsonwebtoken";
 
 const auth = async (req, res, next) => {
+  console.log(req.cookies)
   const token = req.cookies.token;
 
   if (!token) {
@@ -9,6 +10,7 @@ const auth = async (req, res, next) => {
   }
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(payload)
 
     // const testUser = payload.userId === "";
 

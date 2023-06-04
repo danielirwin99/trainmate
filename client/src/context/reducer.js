@@ -7,6 +7,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS,
 } from "./actions.js";
 
 import { initialState } from "./appContext.js";
@@ -89,6 +91,26 @@ const reducer = (state, action) => {
       alertText: action.payload.msg,
     };
   }
+
+  if (action.type === GET_CURRENT_USER_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert: false,
+    };
+  }
+
+  if (action.type === GET_CURRENT_USER_SUCCESS) {
+    return {
+      ...state,
+      userLoading: false,
+      user: action.payload.user,
+      userWeight: action.payload.weight,
+      userHeight: action.payload.height,
+    };
+  }
+  
+  throw new Error(`No such action : ${action.type}`);
 };
 
 export default reducer;

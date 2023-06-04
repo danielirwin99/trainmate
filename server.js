@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import "express-async-errors";
 import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import mongoSanitize from "express-mongo-sanitize";
 
 // Middleware
 import notFoundMiddleware from "./middleware/not-found.js";
@@ -23,6 +25,11 @@ if (process.env.NODE_ENV !== "productions") {
   app.use(morgan("dev"));
 }
 
+// Our Cookie Middleware
+app.use(cookieParser());
+
+app.use(mongoSanitize());
+
 // Our Base URL
 app.get("/api/v1", (req, res) => {
   res.json({ msg: "API Base" });
@@ -32,12 +39,11 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/exercises", authenticateUser, journalRouter);
 
-// Jobs Router
-
 // Middleware
 app.use(notFoundMiddleware);
 // This converts the errors into json readable error responses
 app.use(errorHandlerMiddleware);
+
 
 // Our port from localHost
 const port = process.env.PORT || 5000;

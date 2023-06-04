@@ -1,6 +1,10 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/User.js";
-import { BadRequestError, UnAuthenticatedError } from "../errors/index.js";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnAuthenticatedError,
+} from "../errors/index.js";
 import attachCookies from "../utils/attachCookies.js";
 
 const register = async (req, res) => {
@@ -54,10 +58,12 @@ const login = async (req, res) => {
   }
   const token = user.createJWT();
 
-  attachCookies({ res, token });
+  console.log(token);
 
   // Removes the password from the response so the Frontend does not get it
   user.password = undefined;
+
+  attachCookies({ res, token });
   res
     .status(StatusCodes.OK)
     .json({ user, weight: user.weight, height: user.height });
@@ -83,6 +89,7 @@ const update = async (req, res) => {
   const token = user.createJWT();
 
   attachCookies({ res, token });
+
   res.status(StatusCodes.OK).json({
     user,
     weight: user.weight,
@@ -101,4 +108,22 @@ const logout = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "User Logged Out" });
 };
 
-export { register, login, update, logout };
+const deleteUser = async (req, res) => {
+  const { id: userId } = req.params;
+  const user = await User.findOneAndDelete({ _id: userId });
+
+  if (!user) {
+    throw new NotFoundError(`No user with id :${_id}`);
+  }
+
+  res.status(StatusCodes.OK).json({ msg: "User Successfully Deleted" });
+};
+
+const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  res
+    .status(StatusCodes.OK)
+    .json({ user, weight: user.weight, height: user.height });
+};
+
+export { register, login, update, logout, deleteUser, getCurrentUser };

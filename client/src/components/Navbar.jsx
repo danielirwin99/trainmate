@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
           <figure className="h-[70px]">
             <img
-              className="w-full h-full bg-[#fee4c3] rounded-full p-2"
+              className="w-full h-full bg-[#fee4c3] rounded-full shadow-sm shadow-black p-2"
               src="https://www.pngall.com/wp-content/uploads/2017/05/TM-Symbol-PNG-Picture.png"
               alt="trainmate logo"
             />

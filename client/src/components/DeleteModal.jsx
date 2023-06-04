@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAppContext } from "../context/appContext";
 import { useNavigate } from "react-router-dom";
@@ -22,15 +21,16 @@ export default function DeleteModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const { deleteUser } = useAppContext();
 
-  const deleteUser = () => {
-    console.log("DELETED");
+  const removeUser = () => {
+    deleteUser();
     navigate("/");
   };
 
   return (
     <div>
-      <button className="btn ml-10 px-6 bg-slate-500" onClick={handleOpen}>
+      <button className="btn ml-8 px-6 bg-slate-500" onClick={handleOpen}>
         Delete User
       </button>
       <Modal
@@ -42,9 +42,14 @@ export default function DeleteModal() {
         <Box sx={style}>
           <h2 className="mb-10 text-3xl text-center">Are you sure?</h2>
           <div className="flex justify-around">
-            <button className="btn px-7 text-xl bg-slate-500">No</button>
             <button
-              onClick={deleteUser}
+              onClick={handleClose}
+              className="btn px-7 text-xl bg-slate-500"
+            >
+              No
+            </button>
+            <button
+              onClick={removeUser}
               className="btn px-7 text-xl bg-slate-500"
             >
               Yes

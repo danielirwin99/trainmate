@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 
 const ProfileForm = ({
@@ -10,18 +10,20 @@ const ProfileForm = ({
   placeholder,
   disabled,
 }) => {
+  const [inputDisabled,setInputDisabled] = useState(false)
+
   return (
-    <div className="flex items-center capitalize tracking-wider">
+    <div className="flex capitalize tracking-wider mb-4">
       <label
-        className=" font-semibold text-gray-400 text-lg text-start w-24 mr-48"
+        className=" font-semibold text-gray-400 text-lg text-start w-24 "
         htmlFor={name}
       >
         {labelText || name}
       </label>
       <input
-        className="outline-none py-1 px-3 rounded-sm border border-opacity-50 font-semibold text-sm border-black w-[400px]"
+        className="outline-none ml-48 py-1 px-3 rounded-sm border border-opacity-50 font-semibold text-sm border-black w-[400px]"
         type={type}
-        disabled={disabled}
+        disabled={setInputDisabled}
         value={value}
         name={name}
         onChange={handleChange}
