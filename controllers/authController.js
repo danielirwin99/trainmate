@@ -7,6 +7,8 @@ import {
 } from "../errors/index.js";
 import attachCookies from "../utils/attachCookies.js";
 
+import checkPermissions from "../utils/checkPermissions.js";
+
 const register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -115,6 +117,8 @@ const deleteUser = async (req, res) => {
   if (!user) {
     throw new NotFoundError(`No user with id :${_id}`);
   }
+
+  checkPermissions(req.userId, user.email);
 
   res.status(StatusCodes.OK).json({ msg: "User Successfully Deleted" });
 };

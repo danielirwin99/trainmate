@@ -5,15 +5,27 @@ import { BsPerson } from "react-icons/bs";
 import ProfileForm from "../components/ProfileForm";
 import { useNavigate } from "react-router-dom";
 import DeleteModal from "../components/DeleteModal";
+import Alert from "../components/Alert";
 
 const Profile = () => {
-  const { user, logoutUser, } = useAppContext();
+  const { user, logoutUser, showAlert, displayAlert, updateUser, isLoading } =
+    useAppContext();
+  const [name, setName] = useState(user?.name);
+  const [lastName, setLastName] = useState(user?.lastName);
+  const [email, setEmail] = useState(user?.email);
+  const [weight, setWeight] = useState(user?.weight);
+  const [height, setHeight] = useState(user?.height);
 
   const navigate = useNavigate();
 
-  // if (!user) {
-  //   navigate("/");
-  // }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !lastName || !email || !weight || !height) {
+      displayAlert();
+      return;
+    }
+    updateUser({ name, email, lastName, weight, height });
+  };
 
   const logout = () => {
     logoutUser();
@@ -50,22 +62,49 @@ const Profile = () => {
         <div className="border-b-2 pb-4">
           <h1 className="text-2xl">Account</h1>
         </div>
-        <div className="flex-col mt-10 mb-5">
-          <ProfileForm type="text" name="name" placeholder={user?.name} />
+        <form className="flex-col mt-10 mb-5" onSubmit={handleSubmit}>
+          {showAlert && <Alert />}
+          <ProfileForm
+            type="text"
+            name="name"
+            placeholder={user?.name}
+            handleChange={(e) => setName(e.target.value)}
+          />
           <ProfileForm
             type="text"
             name="last name"
             placeholder={user?.lastName}
+            handleChange={(e) => setLastName(e.target.value)}
           />
-          <ProfileForm type="email" name="email" placeholder={user?.email} />
+          <ProfileForm
+            type="email"
+            name="email"
+            placeholder={user?.email}
+            handleChange={(e) => setEmail(e.target.value)}
+          />
           <ProfileForm type="password" name="password" placeholder="********" />
-          <ProfileForm type="text" name="weight" placeholder={user?.weight} />
-          <ProfileForm type="text" name="height" placeholder={user?.height} />
-        </div>
+          <ProfileForm
+            type="text"
+            name="weight"
+            placeholder={user?.weight}
+            handleChange={(e) => setWeight(e.target.value)}
+          />
+          <ProfileForm
+            type="text"
+            name="height"
+            placeholder={user?.height}
+            handleChange={(e) => setHeight(e.target.value)}
+          />
+        </form>
         <div className="space-y-5 mb-5">
-          <button className="btn ml-[450px] px-7 bg-slate-500">Submit</button>
+          <button
+            className="btn ml-[450px] px-7 bg-slate-500"
+            type="submit"
+          >
+            Submit
+          </button>
           <div className="flex items-center ml-72 ">
-            <button onClick={logout} className="btn px-7 bg-slate-500">
+            <button onClick={logout} className="btn px-8 bg-slate-500">
               Logout
             </button>
             <DeleteModal />

@@ -10,8 +10,6 @@ const ProfileForm = ({
   placeholder,
   disabled,
 }) => {
-  const [inputDisabled,setInputDisabled] = useState(false)
-
   return (
     <div className="flex capitalize tracking-wider mb-4">
       <label
@@ -23,7 +21,6 @@ const ProfileForm = ({
       <input
         className="outline-none ml-48 py-1 px-3 rounded-sm border border-opacity-50 font-semibold text-sm border-black w-[400px]"
         type={type}
-        disabled={setInputDisabled}
         value={value}
         name={name}
         onChange={handleChange}

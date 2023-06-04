@@ -14,6 +14,9 @@ import {
   GET_CURRENT_USER_SUCCESS,
   DELETE_USER_BEGIN,
   DELETE_USER_ERROR,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./actions.js";
 import axios from "axios";
 
@@ -45,7 +48,7 @@ const AppProvider = ({ children }) => {
       console.log(error.response);
       if (error.response.status === 401) {
         console.log("AUTH ERROR");
-        // logoutUser();
+        logoutUser();
       }
       return Promise.reject(error);
     }
@@ -112,6 +115,25 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const updateUser = async (currentUser) => {
+    dispatch({ type: UPDATE_USER_BEGIN });
+    try {
+      const { data } = await authFetch.patch("/auth/updateUser", currentUser);
+      const { user, weight, height } = data;
+
+      dispatch({
+        type: UPDATE_USER_SUCCESS,
+        payload: { user, weight, height },
+      });
+    } catch (error) {
+      dispatch({
+        type: UPDATE_USER_ERROR,
+        payload: { msg: error.response.data },
+      });
+    }
+    clearAlert();
+  };
+
   const logoutUser = async () => {
     dispatch({ type: LOGOUT_USER });
     await authFetch.get("/auth/logout");
@@ -136,8 +158,7 @@ const AppProvider = ({ children }) => {
   const deleteUser = async (userId) => {
     dispatch({ type: DELETE_USER_BEGIN });
     try {
-      await authFetch.delete(`auth/${userId}`);
-      logoutUser();
+      await authFetch.delete(`/auth/${userId}`);
     } catch (error) {
       if (error.response.status === 401) return;
       dispatch({
@@ -160,6 +181,7 @@ const AppProvider = ({ children }) => {
         displayAlert,
         registerUser,
         loginUser,
+        updateUser,
         logoutUser,
         getCurrentUser,
         deleteUser,

@@ -17,14 +17,14 @@ const Navbar = () => {
     <nav className=" bg-gray-500 sticky top-0 z-50">
       <div className="flex justify-between items-center px-6 py-3 h-[100px]">
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
-          <figure className="h-[70px]">
+          <figure className="h-[70px] w-[70px]">
             <img
-              className="w-full h-full bg-[#fee4c3] rounded-full shadow-sm shadow-black p-2"
+              className=" w-full h-full bg-[#fee4c3] rounded-full shadow-sm shadow-black p-2"
               src="https://www.pngall.com/wp-content/uploads/2017/05/TM-Symbol-PNG-Picture.png"
               alt="trainmate logo"
             />
           </figure>
-          <h2 className="font-bold text-2xl text-[#fee4c3] hidden lg:block text-shadow-sm shadow-black ">
+          <h2 className="font-bold text-2xl text-[#fee4c3] hidden xl:block text-shadow-sm shadow-black ">
             TrainMate
           </h2>
         </Link>{" "}
@@ -57,7 +57,7 @@ const Navbar = () => {
         </ul>
         <div className="flex items-center space-x-3">
           {user && (
-            <h3 className="-ml-14 mr-2 capitalize text-white font-bold text-lg">
+            <h3 className="-ml-14 mr-2 capitalize text-white font-bold text-lg hidden lg:block">
               Welcome,{" "}
               <Link
                 to="/profile"
@@ -67,7 +67,7 @@ const Navbar = () => {
               </Link>{" "}
             </h3>
           )}
-          <Link to="/journal" className="btn">
+          <Link to="/journal" className="btn text-xs lg:text-base">
             Journal
           </Link>
         </div>

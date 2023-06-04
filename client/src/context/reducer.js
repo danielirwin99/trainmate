@@ -9,6 +9,9 @@ import {
   LOGIN_USER_ERROR,
   GET_CURRENT_USER_BEGIN,
   GET_CURRENT_USER_SUCCESS,
+  UPDATE_USER_BEGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./actions.js";
 
 import { initialState } from "./appContext.js";
@@ -109,8 +112,35 @@ const reducer = (state, action) => {
       userHeight: action.payload.height,
     };
   }
-  
-  throw new Error(`No such action : ${action.type}`);
+
+  if (action.type === UPDATE_USER_BEGIN) {
+    return { ...state, isLoading: true };
+  }
+
+  if (action.type === UPDATE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      user: action.payload.user,
+      userWeight: action.payload.weight,
+      userHeight: action.payload.height,
+      showAlert: true,
+      alertType: "success",
+      alertText: "Update Profile Updated!",
+    };
+  }
+
+  if (action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      alertType: "danger",
+      alertText: action.payload.msg,
+    };
+  }
+
+  // throw new Error(`No such action : ${action.type}`);
 };
 
 export default reducer;
