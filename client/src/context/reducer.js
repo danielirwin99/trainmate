@@ -119,8 +119,8 @@ const reducer = (state, action) => {
       ...state,
       userLoading: false,
       user: action.payload.user,
-      userWeight: action.payload.weight,
-      userHeight: action.payload.height,
+      weight: action.payload.weight,
+      height: action.payload.height,
     };
   }
 
@@ -133,10 +133,8 @@ const reducer = (state, action) => {
       ...state,
       isLoading: false,
       user: action.payload.user,
-      userName: action.payload.userName,
-      useLastName: action.payload.userLastName,
-      userWeight: action.payload.userWeight,
-      userHeight: action.payload.userHeight,
+      weight: action.payload.weight,
+      height: action.payload.height,
       showAlert: true,
       alertType: "success",
       alertText: "Update Profile Updated!",
@@ -165,7 +163,7 @@ const reducer = (state, action) => {
     return { ...state, ...initialState };
   }
 
-  // throw new Error(`No such action : ${action.type}`);
+  throw new Error(`No such action : ${action.type}`);
 };
 
 export default reducer;

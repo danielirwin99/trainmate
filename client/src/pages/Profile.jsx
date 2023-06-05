@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useAppContext } from "../context/appContext";
 import { BsPerson } from "react-icons/bs";
@@ -8,7 +8,7 @@ import DeleteModal from "../components/DeleteModal";
 import Alert from "../components/Alert";
 
 const Profile = () => {
-  const { user, logoutUser, showAlert, displayAlert, updateUser, isLoading } =
+  const { user, logoutUser, showAlert, displayAlert, updateUser, isLoading,getCurrentUser } =
     useAppContext();
   const [name, setName] = useState(user?.name);
   const [lastName, setLastName] = useState(user?.lastName);
@@ -27,10 +27,14 @@ const Profile = () => {
     updateUser({ name, email, lastName, weight, height });
   };
 
+  
   const logout = () => {
     logoutUser();
     navigate("/register");
   };
+
+  
+
   return (
     <>
       <Navbar />
@@ -67,40 +71,37 @@ const Profile = () => {
           <ProfileForm
             type="text"
             name="name"
-            placeholder={user?.name}
+            value={name}
             handleChange={(e) => setName(e.target.value)}
           />
           <ProfileForm
             type="text"
             name="last name"
-            placeholder={user?.lastName}
+            value={lastName}
             handleChange={(e) => setLastName(e.target.value)}
           />
           <ProfileForm
             type="email"
             name="email"
-            placeholder={user?.email}
+            value={email}
             handleChange={(e) => setEmail(e.target.value)}
           />
           <ProfileForm type="password" name="password" placeholder="********" />
           <ProfileForm
             type="text"
             name="weight"
-            placeholder={user?.weight}
+            value={weight}
             handleChange={(e) => setWeight(e.target.value)}
           />
           <ProfileForm
             type="text"
             name="height"
-            placeholder={user?.height}
+            value={height}
             handleChange={(e) => setHeight(e.target.value)}
           />
         </form>
         <div className="space-y-5 mb-5">
-          <button
-            className="btn ml-[450px] px-7 bg-slate-500"
-            type="submit"
-          >
+          <button className="btn ml-[460px] px-7 bg-slate-500" type="submit">
             Submit
           </button>
           <div className="flex items-center ml-72 ">

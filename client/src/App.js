@@ -6,13 +6,21 @@ import Journal from "./pages/Journal";
 import ContactUs from "./pages/ContactUs";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Landing />
+              </ProtectedRoute>
+            }
+          ></Route>
           <Route path="/register" element={<Register />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/contact-us" element={<ContactUs />} />

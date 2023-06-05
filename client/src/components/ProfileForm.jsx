@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { FiEdit2 } from "react-icons/fi";
+import React from "react";
 
 const ProfileForm = ({
   name,
@@ -8,7 +7,6 @@ const ProfileForm = ({
   handleChange,
   type,
   placeholder,
-  disabled,
 }) => {
   return (
     <div className="flex capitalize tracking-wider mb-4">

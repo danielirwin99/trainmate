@@ -29,10 +29,6 @@ const initialState = {
   user: null,
   weight: "",
   height: "",
-  userName: "",
-  userWeight: "",
-  userHeight: "",
-  userLastName: "Last Name",
   gender: "male",
   genderTypeOptions: ["male", "female", "other"],
 };
