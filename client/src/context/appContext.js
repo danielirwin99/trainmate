@@ -36,6 +36,8 @@ const initialState = {
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   // Axios Setup
   const authFetch = axios.create({
     baseURL: "/api/v1",
@@ -55,8 +57,6 @@ const AppProvider = ({ children }) => {
       return Promise.reject(error);
     }
   );
-
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   const displayAlert = () => {
     dispatch({ type: DISPLAY_ALERT });
@@ -144,13 +144,13 @@ const AppProvider = ({ children }) => {
   const getCurrentUser = async () => {
     dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
-      const { data } = await authFetch.get("/auth/getCurrentUser");
-
+      const { data } = await authFetch("/auth/getCurrentUser");
       const { user, weight, height } = data;
       dispatch({
         type: GET_CURRENT_USER_SUCCESS,
         payload: { user, weight, height },
       });
+      console.log(GET_CURRENT_USER_SUCCESS);
     } catch (error) {
       if (error.response.status === 401) return;
       logoutUser();
@@ -184,12 +184,12 @@ const AppProvider = ({ children }) => {
       value={{
         ...state,
         clearAlert,
+        clearValues,
         displayAlert,
         registerUser,
         loginUser,
         updateUser,
         logoutUser,
-        getCurrentUser,
         deleteUser,
       }}
     >

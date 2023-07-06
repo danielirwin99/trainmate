@@ -5,7 +5,7 @@ import FormRow from "../components/FormRow";
 const ContactUs = () => {
   const onSubmit = (e) => {
     e.preventDefault();
-    alert("Hello")
+    alert("Hello");
   };
 
   return (
@@ -18,9 +18,9 @@ const ContactUs = () => {
           // onSubmit={onSubmit}
         >
           {/* Full Name */}
-          <FormRow type="text" name="full name" />
+          <FormRow type="text" name="full name" placeholder="Samewise Gamgee" />
           {/* Email */}
-          <FormRow type="email" name="email" />
+          <FormRow type="email" name="email" placeholder="sam@example.com" />
           {/* Message */}
           <h1 className="text-[#fee4c3] font-bold my-4 text-lg">Message</h1>
           <textarea

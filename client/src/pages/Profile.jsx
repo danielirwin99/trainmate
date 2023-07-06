@@ -8,7 +8,7 @@ import DeleteModal from "../components/DeleteModal";
 import Alert from "../components/Alert";
 
 const Profile = () => {
-  const { user, logoutUser, showAlert, displayAlert, updateUser, isLoading,getCurrentUser } =
+  const { user, logoutUser, showAlert, displayAlert, updateUser, isLoading } =
     useAppContext();
   const [name, setName] = useState(user?.name);
   const [lastName, setLastName] = useState(user?.lastName);
@@ -27,13 +27,10 @@ const Profile = () => {
     updateUser({ name, email, lastName, weight, height });
   };
 
-  
   const logout = () => {
     logoutUser();
     navigate("/register");
   };
-
-  
 
   return (
     <>
@@ -67,7 +64,7 @@ const Profile = () => {
           <h1 className="text-2xl">Account</h1>
         </div>
         <form className="flex-col mt-10 mb-5" onSubmit={handleSubmit}>
-          {showAlert && <Alert />}
+          <div className="my-5 w-1/2">{showAlert && <Alert />}</div>
           <ProfileForm
             type="text"
             name="name"
@@ -99,11 +96,15 @@ const Profile = () => {
             value={height}
             handleChange={(e) => setHeight(e.target.value)}
           />
-        </form>
-        <div className="space-y-5 mb-5">
-          <button className="btn ml-[460px] px-7 bg-slate-500" type="submit">
+          <button
+            className="btn ml-[460px] px-7 bg-slate-500"
+            disabled={isLoading}
+            type="submit"
+          >
             Submit
           </button>
+        </form>
+        <div className="space-y-5 mb-5">
           <div className="flex items-center ml-72 ">
             <button onClick={logout} className="btn px-8 bg-slate-500">
               Logout

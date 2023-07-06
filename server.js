@@ -7,6 +7,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import mongoSanitize from "express-mongo-sanitize";
 
+
 // Middleware
 import notFoundMiddleware from "./middleware/not-found.js";
 import connectDB from "./db/connect.js";

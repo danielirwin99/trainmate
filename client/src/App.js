@@ -22,12 +22,33 @@ function App() {
             }
           ></Route>
           <Route path="/register" element={<Register />} />
-          <Route path="/journal" element={<Journal />} />
+          <Route
+            path="/journal"
+            element={
+              <ProtectedRoute>
+                <Journal />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<Error />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <ProtectedRoute>
+                <Error />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </>
   );

@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (userLoading) return <Loading />;
 
-  // If there is a user --> Bring them to the dashboard / shared layout page
+  // Returns the values inside the state to use elsewhere
   return children;
 };
 
