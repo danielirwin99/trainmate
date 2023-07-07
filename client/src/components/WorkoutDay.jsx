@@ -1,16 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const WorkoutDay = ({ name, image }) => {
-  const navigate = useNavigate();
   return (
-    <div
-      onClick={() => navigate(`/chest`)}
-      className=" w-2/5 h-2/5 xl:w-[450px] xl:h-[300px] relative cursor-pointer overflow-hidden group/image rounded-xl mx-4 my-2"
-    >
-      <div className=" rounded-xl">
+    <div className="md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[450px] xl:h-[250px] relative cursor-pointer overflow-hidden group/image rounded-xl mx-4 my-2">
+      <div className=" rounded-xl object-fill">
         <img
-          className="group-hover/image:brightness-50 group-hover/image:opacity-85"
+          className="group-hover/image:brightness-[0.4] group-hover/image:opacity-85 "
           src={
             image ||
             "https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"

@@ -1,10 +1,19 @@
 import { StatusCodes } from "http-status-codes";
+import { BadRequestError } from "../errors/index.js";
+import Journal from "../models/Journal.js";
 
-const createExercise = (req, res) => {
+const createExercise = async (req, res) => {
+  const { sets, reps, weight } = req.body;
+
+  if (!sets || !reps || !weight) {
+    throw new BadRequestError("Please provide values");
+  }
+
   res.status(StatusCodes.CREATED).json({ msg: "Create Exercise" });
 };
 
-const getExercise = (req, res) => {
+const getExercises = (req, res) => {
+
   res.status(StatusCodes.CREATED).json({ msg: "Get Exercise" });
 };
 

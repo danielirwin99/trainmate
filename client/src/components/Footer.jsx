@@ -24,7 +24,7 @@ const Footer = () => {
           <ul className="flex flex-col ">
             <Link className="footerLinks">Home</Link>
             <Link className="footerLinks">About</Link>
-            <Link className="footerLinks">Journal</Link>
+            <Link to="/journal/:id/exercises" className="footerLinks">Journal</Link>
           </ul>
           <ul className="flex flex-col">
             <Link className="footerLinks">Contact Us</Link>

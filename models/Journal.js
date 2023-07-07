@@ -1,35 +1,28 @@
 import mongoose from "mongoose";
-import validator from "validator";
+import exercises from "../exercises.json";
 
-const ExerciseSchema = new mongoose.Schema({
-  exercise: {
-    type: String,
-    require: [true, "Please provide the exercise"],
-    minLength: 3,
-    maxlength: 20,
-    trim: true,
-  },
-  weight: {
-    type: String,
-    require: [true, "Please provide email"],
-    minLength: 5,
-    trim: true,
-    validate: {
-      validator: validator.isEmail,
-      message: "Please provide a valid email",
+const ExerciseSchema = new mongoose.Schema(
+  {
+    exercise: {
+      type: String,
+      enum: [...exercises.chest_exercises],
+      default: "Bench Press",
+    },
+    sets: {
+      type: Number,
+      default: "4",
+    },
+
+    reps: {
+      type: Number,
+      default: "10",
+    },
+    weight: {
+      type: Number,
+      default: "50",
     },
   },
-  reps: {
-    type: String,
-    require: [true, "Please provide password"],
-    select: false,
-  },
-  lastName: {
-    type: String,
-    maxlength: 20,
-    trim: true,
-    default: "Last Name",
-  },
-});
+  { timestamps: true }
+);
 
 export default mongoose.model("Exercise", ExerciseSchema);
