@@ -29,12 +29,12 @@ function App() {
           ></Route>
           <Route path="/register" element={<Register />} />
           <Route path="journal" element={<Journal />}>
-            <Route path="chest" element={<Chest />} />
-            <Route path="legs" element={<Legs />} />
-            <Route path="back" element={<Back />} />
+            <Route path="chest-day" element={<Chest />} />
+            <Route path="leg-day" element={<Legs />} />
+            <Route path="back-day" element={<Back />} />
             <Route path="full-body-workout" element={<Fbw />} />
-            <Route path="cardio" element={<Cardio />} />
-            <Route path="arms" element={<Arms />} />
+            <Route path="cardio-day" element={<Cardio />} />
+            <Route path="arms-day" element={<Arms />} />
           </Route>
           <Route path="/contact-us" element={<ContactUs />} />
           <Route

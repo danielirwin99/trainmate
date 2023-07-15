@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import exercises from "../exercises.json";
+import exercises from "../exercises.json" assert { type: "json" };
 
 const ExerciseSchema = new mongoose.Schema(
   {

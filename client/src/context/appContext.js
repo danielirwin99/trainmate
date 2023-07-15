@@ -51,7 +51,7 @@ const AppProvider = ({ children }) => {
     (error) => {
       console.log(error.response);
       if (error.response.status === 401) {
-        console.log("AUTH ERROR");
+        console.log("No Logged In User");
         logoutUser();
       }
       return Promise.reject(error);
@@ -150,7 +150,6 @@ const AppProvider = ({ children }) => {
         type: GET_CURRENT_USER_SUCCESS,
         payload: { user, weight, height },
       });
-      console.log(GET_CURRENT_USER_SUCCESS);
     } catch (error) {
       if (error.response.status === 401) return;
       logoutUser();

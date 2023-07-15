@@ -30,7 +30,7 @@ export default function DeleteModal() {
 
   return (
     <div>
-      <button className="btn ml-8 px-6 bg-slate-500" onClick={handleOpen}>
+      <button className="btn px-9 py-2.5 bg-slate-500" onClick={handleOpen}>
         Delete User
       </button>
       <Modal

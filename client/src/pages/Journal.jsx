@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import WorkoutDay from "../components/WorkoutDay";
-import { chest, back, cardio, curl, fbw, legs } from "../assets/index";
+import data from "../data/data.js";
 import { TbBarbell } from "react-icons/tb";
 import { Link, Outlet } from "react-router-dom";
+import SkeletonPhoto from "../components/UI/SkeletonPhoto";
 
 const Journal = () => {
+  const [loading, isLoading] = useState(true);
+  const ref = useRef(null);
+
+  const handleClick = () => {
+    
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      isLoading(false);
+    }, 1500);
+  });
   return (
     <>
       <Navbar />
@@ -18,24 +31,24 @@ const Journal = () => {
           <TbBarbell className="text-5xl pt-1" />
         </div>
         <div className="flex flex-wrap justify-center">
-          <Link to="/journal/chest">
-            <WorkoutDay image={chest} name="Chest" />
-          </Link>
-          <Link to={`/journal/back`}>
-            <WorkoutDay image={back} name="Back" />
-          </Link>
-          <Link to={`/journal/legs`}>
-            <WorkoutDay image={legs} name="Legs" />
-          </Link>
-          <Link to={`/journal/arms`}>
-            <WorkoutDay image={curl} name="Arms" />
-          </Link>
-          <Link to={`/journal/cardio`}>
-            <WorkoutDay image={cardio} name="Cardio" />
-          </Link>
-          <Link to={`/journal/full-body-workout`}>
-            <WorkoutDay image={fbw} name="Full Body Workout" />
-          </Link>
+          {loading
+            ? new Array(6)
+                .fill(0)
+                .map((_, index) => <SkeletonPhoto key={index} />)
+            : data.map((exercise, index) => (
+                <Link
+                  onClick={() => handleClick}
+                  to={`/journal/${exercise.link}`}
+                  className="flex flex-wrap justify-center"
+                  key={index}
+                >
+                  <WorkoutDay
+                    refProp={ref}
+                    image={exercise.image}
+                    name={exercise.name}
+                  />
+                </Link>
+              ))}
         </div>
       </div>
       <Outlet />

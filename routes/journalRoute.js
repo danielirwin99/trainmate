@@ -3,12 +3,12 @@ const router = express.Router()
 
 import {
   createExercise,
-  getExercise,
+  getExercises,
   deleteExercise,
   updateExercise,
 } from "../controllers/journalController.js";
 
-router.route("/").post(createExercise).get(getExercise)
+router.route("/").post(createExercise).get(getExercises)
 
 router.route("/:id").patch(updateExercise).delete(deleteExercise)
 

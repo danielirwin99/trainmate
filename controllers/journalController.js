@@ -14,7 +14,7 @@ const createExercise = async (req, res) => {
 
 const getExercises = (req, res) => {
 
-  res.status(StatusCodes.CREATED).json({ msg: "Get Exercise" });
+  res.status(StatusCodes.OK).json({ msg: "Get Exercise" });
 };
 
 const updateExercise = (req, res) => {
@@ -25,4 +25,4 @@ const deleteExercise = (req, res) => {
   res.status(StatusCodes.CREATED).json({ msg: "Delete Exercise" });
 };
 
-export { createExercise, getExercise, updateExercise, deleteExercise };
+export { createExercise, getExercises, updateExercise, deleteExercise };

@@ -27,6 +27,13 @@ const Profile = () => {
     updateUser({ name, email, lastName, weight, height });
   };
 
+  const disabledButton = () => {
+    if (handleSubmit === "") {
+      return true;
+    }
+    return false;
+  };
+
   const logout = () => {
     logoutUser();
     navigate("/register");
@@ -35,15 +42,15 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className=" m-10 ml-32 w-50%">
-        <h1 className="font-bold text-5xl">Profile</h1>
+      <div className=" m-10 ml-32 min-w-5xl">
+        <h1 className="font-bold text-4xl">Profile</h1>
         <div className="flex my-5 items-center space-x-3">
-          <BsPerson className="text-3xl" />
-          <h1 className="capitalize text-2xl">
+          <BsPerson className="text-2xl" />
+          <h1 className="capitalize text-xl">
             User: <span className="font-bold">{user?.name}</span>
           </h1>
         </div>
-        <div className="flex space-x-48 mt-10">
+        <div className="flex space-x-48 mt-5">
           <figure className="w-30% h-28 rounded-lg">
             <img
               className="w-full h-full rounded-lg"
@@ -52,19 +59,19 @@ const Profile = () => {
             />
           </figure>
           <div>
-            <h1 className="capitalize text-5xl font-semibold mb-4">
+            <h1 className="capitalize text-4xl font-semibold mb-4">
               {user?.name}
             </h1>
-            <h2 className="text-cyan-600 cursor-pointer text-xl">
-              {user?.email}
-            </h2>
+            <h2 className="text-cyan-600 text-xl">{user?.email}</h2>
           </div>
         </div>
         <div className="border-b-2 pb-4">
           <h1 className="text-2xl">Account</h1>
         </div>
-        <form className="flex-col mt-10 mb-5" onSubmit={handleSubmit}>
-          <div className="my-5 w-1/2">{showAlert && <Alert />}</div>
+        <form className="flex flex-col mb-5 max-w-2xl" onSubmit={handleSubmit}>
+          <div className="my-5 w-full text-center text-black font-bold">
+            {showAlert && <Alert />}
+          </div>
           <ProfileForm
             type="text"
             name="name"
@@ -97,21 +104,18 @@ const Profile = () => {
             handleChange={(e) => setHeight(e.target.value)}
           />
           <button
-            className="btn ml-[460px] px-7 bg-slate-500"
-            disabled={isLoading}
+            className="btn px-7 mt-5 py-2 border-2 shadow-sm text-slate-500 border-slate-500 rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out "
             type="submit"
           >
             Submit
           </button>
-        </form>
-        <div className="space-y-5 mb-5">
-          <div className="flex items-center ml-72 ">
-            <button onClick={logout} className="btn px-8 bg-slate-500">
+          <div className="flex justify-center w-full mt-10 gap-x-4">
+            <button onClick={logout} className="btn px-12 py-2.5 bg-slate-500">
               Logout
             </button>
             <DeleteModal />
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

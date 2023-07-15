@@ -83,7 +83,7 @@ const reducer = (state, action) => {
       height: action.payload.height,
       showAlert: true,
       alertType: "success",
-      alertText: "User Successfully Logged In",
+      alertText: "User Successfully Logged In...",
     };
   }
 
