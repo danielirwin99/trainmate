@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className=" bg-gray-500 sticky top-0 z-50">
       <div className="flex justify-between items-center px-6 py-3 h-[100px]">
         <Link to="/" className="flex items-center cursor-pointer space-x-3">
-          <figure className="h-[70px] w-[70px]">
+          <figure className="h-[50px] w-[50px] md:h-[70px] md:w-[70px]">
             <img
               className=" w-full h-full bg-[#fee4c3] rounded-full shadow-sm shadow-black p-2"
               src="https://www.pngall.com/wp-content/uploads/2017/05/TM-Symbol-PNG-Picture.png"
@@ -32,7 +32,7 @@ const Navbar = () => {
           <li className="navLinks">
             <Link to="/">Home</Link>
           </li>
-          <li className="navLinks">
+          <li className="navLinks hidden md:flex">
             <Link to="/contact-us">Contact Us</Link>
           </li>{" "}
           {user && (
@@ -67,7 +67,7 @@ const Navbar = () => {
               </Link>{" "}
             </h3>
           )}
-          <Link to="/journal" className="btn text-xs lg:text-base">
+          <Link to="/journal" className="btn text-[10px] lg:text-base">
             Journal
           </Link>
         </div>

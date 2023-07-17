@@ -3,16 +3,16 @@ import { BsStarFill, BsStarHalf } from "react-icons/bs";
 
 const Testimonials = () => {
   return (
-    <section className=" flex flex-col items-center my-8 ">
-      <h1 className="font-semibold text-4xl mb-10 tracking-wider text-[#FF851B] ">
+    <section className=" flex flex-col items-center my-8 mx-5 ">
+      <h1 className="text-center font-semibold text-4xl mb-10 tracking-wider text-[#FF851B] ">
         See what our customers are saying
       </h1>
-      <h3 className="tracking-wide leading-10 font-semibold text-xl mb-5">
+      <h3 className="tracking-wide leading-10 font-semibold text-xl mb-5 text-center">
         Lots of people are talking about us on Trust Pilot. <br /> Here are just
         a few of the extremely positive things.
       </h3>
-      <div className="flex w-full px-5 xl:px-0 justify-center my-8 space-x-8 ">
-        <div className="w-[50%] xl:w-[25%]  border border-gray-400">
+      <div className="flex w-full flex-col md:flex-row md:px-5 xl:px-0 justify-center my-8 md:space-x-8 ">
+        <div className="w-full lg:w-[50%] xl:w-[25%] border border-gray-400">
           <div className="flex flex-col p-7">
             <div className="flex space-x-4 ">
               <BsStarFill className="star" />
@@ -34,7 +34,7 @@ const Testimonials = () => {
             <p className="text-gray-500">Mr Olympia - 2006, 2007, 2009</p>
           </div>
         </div>
-        <div className="w-[50%] xl:w-[25%]  border border-gray-400">
+        <div className="w-full lg:w-[50%] xl:w-[25%] mt-5 md:mt-0 border border-gray-400">
           <div className="flex flex-col p-7">
             <div className="flex space-x-4 ">
               <BsStarFill className="star" />

@@ -99,7 +99,7 @@ const Profile = () => {
           <button
             className="btn px-7 mt-5 py-2 border-2 shadow-sm text-slate-500 border-slate-500 rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out "
             type="submit"
-            disabled={disabled}
+            // disabled={disabled}
           >
             Submit
           </button>
