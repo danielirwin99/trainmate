@@ -7,7 +7,7 @@ const Testimonials = () => {
       <h1 className="font-semibold text-4xl mb-10 tracking-wider text-[#FF851B] ">
         See what our customers are saying
       </h1>
-      <h3 className="tracking-wide leading-10 font-semibold text-xl">
+      <h3 className="tracking-wide leading-10 font-semibold text-xl mb-5">
         Lots of people are talking about us on Trust Pilot. <br /> Here are just
         a few of the extremely positive things.
       </h3>

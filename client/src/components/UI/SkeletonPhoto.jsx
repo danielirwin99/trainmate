@@ -7,7 +7,7 @@ const SkeletonPhoto = () => {
       <Skeleton
         style={{ borderRadius: "10px" }}
         variant="rounded"
-        width={400}
+        width={450}
         height={250}
       />
     </div>

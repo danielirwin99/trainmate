@@ -11,7 +11,7 @@ const ProfileForm = ({
   return (
     <div className="grid grid-cols-2 row-auto capitalize tracking-wider mb-4 mr-2">
       <label
-        className=" font-semibold text-gray-400 text-lg text-start w-24 "
+        className=" font-semibold text-gray-500 text-lg text-start "
         htmlFor={name}
       >
         {labelText || name}

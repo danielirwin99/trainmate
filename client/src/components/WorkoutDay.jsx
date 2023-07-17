@@ -1,13 +1,10 @@
 import React from "react";
 
 const WorkoutDay = ({ name, image }) => {
-  
   return (
     <div className="md:h-[200px] lg:w-[300px] lg:h-[200px] xl:w-[450px] xl:h-[250px] relative cursor-pointer overflow-hidden group/image rounded-xl mx-4 my-2">
       <div className=" rounded-xl object-fill">
         <img
-          data-aos="fade-in"
-          data-aos-easing="ease-in-out"
           className="group-hover/image:brightness-[0.4] group-hover/image:opacity-85 "
           src={
             image ||

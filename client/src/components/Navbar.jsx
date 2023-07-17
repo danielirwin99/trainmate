@@ -24,7 +24,7 @@ const Navbar = () => {
               alt="trainmate logo"
             />
           </figure>
-          <h2 className="font-bold text-2xl text-[#fee4c3] hidden xl:block text-shadow-sm shadow-black ">
+          <h2 className="font-bold text-2xl text-[#fee4c3] hidden xl:block bg-clip-text ">
             TrainMate
           </h2>
         </Link>{" "}
@@ -57,11 +57,11 @@ const Navbar = () => {
         </ul>
         <div className="flex items-center space-x-3">
           {user && (
-            <h3 className="-ml-14 mr-2 capitalize text-white font-bold text-lg hidden lg:block">
+            <h3 className="-ml-14 mr-2 capitalize text-white text-lg hidden lg:block">
               Welcome,{" "}
               <Link
                 to="/profile"
-                className="transition-all duration-200 ease-out hover:text-[#fee4c3]"
+                className="transition-all duration-200 ease-out hover:text-[#fee4c3] font-bold"
               >
                 {user.name}
               </Link>{" "}

@@ -27,13 +27,6 @@ const Profile = () => {
     updateUser({ name, email, lastName, weight, height });
   };
 
-  const disabledButton = () => {
-    if (handleSubmit === "") {
-      return true;
-    }
-    return false;
-  };
-
   const logout = () => {
     logoutUser();
     navigate("/register");
@@ -50,17 +43,17 @@ const Profile = () => {
             User: <span className="font-bold">{user?.name}</span>
           </h1>
         </div>
-        <div className="flex space-x-48 mt-5">
+        <div className="flex space-x-48 mt-5 items-center">
           <figure className="w-30% h-28 rounded-lg">
             <img
               className="w-full h-full rounded-lg"
-              src="https://www.pngall.com/wp-content/uploads/2017/05/TM-Symbol-PNG-Picture.png"
+              src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
               alt=""
             />
           </figure>
           <div>
             <h1 className="capitalize text-4xl font-semibold mb-4">
-              {user?.name}
+              {user?.name} {user?.lastName}
             </h1>
             <h2 className="text-cyan-600 text-xl">{user?.email}</h2>
           </div>
@@ -74,7 +67,7 @@ const Profile = () => {
           </div>
           <ProfileForm
             type="text"
-            name="name"
+            name="first name"
             value={name}
             handleChange={(e) => setName(e.target.value)}
           />
@@ -93,7 +86,7 @@ const Profile = () => {
           <ProfileForm type="password" name="password" placeholder="********" />
           <ProfileForm
             type="text"
-            name="weight"
+            name="weight (Kg)"
             value={weight}
             handleChange={(e) => setWeight(e.target.value)}
           />
@@ -106,6 +99,7 @@ const Profile = () => {
           <button
             className="btn px-7 mt-5 py-2 border-2 shadow-sm text-slate-500 border-slate-500 rounded-full font-bold active:bg-transparent bg-[#fee4c3] transition-all duration-100 ease-in-out "
             type="submit"
+            disabled={disabled}
           >
             Submit
           </button>

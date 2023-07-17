@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import WorkoutDay from "../components/WorkoutDay";
 import data from "../data/data.js";
@@ -8,11 +8,6 @@ import SkeletonPhoto from "../components/UI/SkeletonPhoto";
 
 const Journal = () => {
   const [loading, isLoading] = useState(true);
-  const ref = useRef(null);
-
-  const handleClick = () => {
-    
-  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,24 +26,19 @@ const Journal = () => {
           <TbBarbell className="text-5xl pt-1" />
         </div>
         <div className="flex flex-wrap justify-center">
-          {loading
-            ? new Array(6)
-                .fill(0)
-                .map((_, index) => <SkeletonPhoto key={index} />)
-            : data.map((exercise, index) => (
+          {!loading
+            ? data.map((exercise, index) => (
                 <Link
-                  onClick={() => handleClick}
                   to={`/journal/${exercise.link}`}
                   className="flex flex-wrap justify-center"
                   key={index}
                 >
-                  <WorkoutDay
-                    refProp={ref}
-                    image={exercise.image}
-                    name={exercise.name}
-                  />
+                  <WorkoutDay image={exercise.image} name={exercise.name} />
                 </Link>
-              ))}
+              ))
+            : new Array(6)
+                .fill(0)
+                .map((_, index) => <SkeletonPhoto key={index} />)}
         </div>
       </div>
       <Outlet />
